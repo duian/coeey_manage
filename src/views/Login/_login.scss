@@ -1,0 +1,160 @@
+// 登录页面
+.login-table {
+  padding-bottom: 400px;
+  background: #fff;
+}
+
+.login-table .login-header {
+  display: block;
+  margin: 0 auto;
+  color: #FF6100;
+  background: #2db7f5;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+  & > img {
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    padding: 10px;
+  }
+  & > span {
+    display: inline-block;
+    padding: 15px 25px;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 24px;
+  }
+}
+
+.login-table .table-content {
+  position: relative;
+  margin-top: 150px;
+}
+
+.login-table .ant-form-inline {
+  .ant-form-item {
+    display: block;
+    margin-top: 5px;
+    margin-right: 0;
+    & > div {
+      width: 100%;
+    }
+  }
+  .ant-input {
+    width: 100%;
+    height: 40px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 35px;
+    border-radius: 4px;
+    font-size: 16px;
+    &::-webkit-input-placeholder {
+      padding-top: 2px;
+      vertical-align: middle;
+      font-size: 14px;
+    }
+  }
+  i {
+    position: absolute;
+    z-index: 9;
+    margin-top: 12px;
+    margin-left: 10px;
+
+    &:nth-last-of-type(1){
+      margin-top: 16px;
+    }
+  }
+}
+
+.login-table .ant-form-item-control {
+  position: relative;
+}
+
+.login-table .anticon-user:before,
+.anticon-setting:before {
+  font-size: 16px;
+}
+
+.code-box {
+  position: relative;
+  width: 400px;
+  margin: 20px auto 0;
+  padding: 40px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  border: 1px solid #E9E9E9;
+  border-radius: 6px;
+  background: #F6F6F6;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.20);
+  & .ant-btn {
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    border-color: #2db7f5;
+    border-radius: 4px;
+    background-color: #2db7f5;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.owl-login {
+  position: absolute;
+  z-index: 9;
+  top: -100px;
+  left: 50%;
+  width: 211px;
+  height: 108px;
+  margin-left: -111px;
+  background-image: url("owl-login.png");
+}
+.owl-login .hand {
+  position: absolute;
+  bottom: -8px;
+  left: 14px;
+  width: 34px;
+  height: 34px;
+  transition: 0.3s ease-out;
+  transform: scaleY(0.6);
+  border-radius: 40px;
+  background-color: #472d20;
+}
+.owl-login .hand-r {
+  left: 170px;
+}
+.owl-login .arms {
+  position: absolute;
+  top: 58px;
+  overflow: hidden;
+  width: 100%;
+  height: 41px;
+}
+.owl-login .arm {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  width: 40px;
+  height: 65px;
+  transition: 0.3s ease-out;
+  transform: rotate(-20deg);
+  background-image: url("owl-login-arm.png");
+}
+.owl-login .arm-r {
+  left: 158px;
+  transform: rotate(20deg) scaleX(-1);
+}
+.owl-login.password {
+  .hand {
+    transform: translateX(42px) translateY(-15px) scale(0.7);
+  }
+  .hand.hand-r {
+    transform: translateX(-42px) translateY(-15px) scale(0.7);
+  }
+  .arms .arm {
+    transform: translateY(-40px) translateX(40px);
+  }
+  .arms .arm.arm-r {
+    transform: translateY(-40px) translateX(-40px) scaleX(-1);
+  }
+}

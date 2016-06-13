@@ -1,0 +1,32 @@
+.system-param {
+  .ant-btn {
+    &:last-child {
+      margin-left: 20px;
+    }
+  }
+}
+.system-param-add-modal {
+  .ant-select-selection--single .ant-select-selection__rendered {
+    height: 32px;
+
+  }
+  .ant-form-item > label {
+    &:after {
+      content: ":";
+    }
+  }
+  &.edit {
+    .ant-select-disabled {
+      .ant-select-selection--single .ant-select-selection__rendered {
+        background: #fff;
+        color: #666;
+      }
+      .ant-select-selection {
+        border: none;
+      }
+      .ant-select-arrow {
+        display: none;
+      }
+    }
+  }
+}

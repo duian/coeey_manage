@@ -1,0 +1,22 @@
+// 提示
+.tips {
+  display: table;
+  height: 26px;
+  transition: all 2s linear 2s;
+
+  .tip {
+    display: table-cell;
+    width: 1%;
+    text-align: left;
+    color: #666;
+    & > .tip-label {
+      // background: darken(#ccc, 10%);
+      border: 1xp solid;
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+    .ant-tag {
+      margin-bottom: 4px;
+    }
+  }
+}

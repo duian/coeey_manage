@@ -1,0 +1,63 @@
+/**
+ * Header CSS
+ */
+ #header {
+   position: fixed;
+   right: 0;
+   left: 0;
+   z-index: 2;
+   transition: left 0.2s;
+
+   &.active {
+     left: 200px;
+   }
+ }
+
+.sidedrawer-toggle {
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 20px;
+  margin-right: 10px;
+}
+.sidedrawer-toggle:hover {
+  color: #fff;
+  text-decoration: none;
+}
+#header .page-name {
+  color: #fff;
+  font-size: 2.5rem;
+}
+#header .exit {
+  cursor: auto;
+  color: #fff;
+}
+.header-shadow {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
+  transition: box-shadow .2s;
+}
+
+#header .login {
+  position: relative;
+  display: inline-block;
+  float: right;
+  color: #fff;
+  font-style: normal;
+  font-weight: bold;
+}
+.exit {
+  display: inline-block;
+  padding-left: 20px;
+}
+.appbar {
+  background: #555;
+  color: #FFF;
+}
+
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 60px;
+}
