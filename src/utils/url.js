@@ -3,6 +3,7 @@ const prefix = '/api/';
 // 接口地址
 let url = {
   login: 'user',
+  product: 'product',
 };
 
 const addHost = (u) => {

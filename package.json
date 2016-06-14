@@ -45,6 +45,8 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
+    "mongodb": "^2.1.21",
+    "mongoose": "^4.4.20",
     "node-sass": "^3.4.2",
     "nodemon": "^1.9.2",
     "postcss-loader": "^0.8.2",

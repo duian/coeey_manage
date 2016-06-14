@@ -46,7 +46,7 @@ class SearchBar extends React.Component {
           <Row>
             <Col span="5">
               <FormItem
-                label="银行名称"
+                label="编号"
                 labelCol={{ span: 10 }}
                 wrapperCol={{ span: 14 }}
               >

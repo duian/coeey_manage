@@ -67,44 +67,32 @@ class Content extends React.Component {
     const columns = [
       {
         title: '编号',
-        dataIndex: 'number',
-        width: 30,
+        dataIndex: 'index',
+        width: 50,
       },
       {
-        title: '贷款类型',
-        dataIndex: 'loanTypeStr',
+        title: '系列',
+        dataIndex: 'class',
       },
       {
-        title: '所属渠道',
-        dataIndex: 'channelIdStr',
+        title: '名称',
+        dataIndex: 'name',
       },
       {
-        title: '银行名称',
-        dataIndex: 'bankIdStr',
+        title: '规格',
+        dataIndex: 'format',
       },
       {
-        title: '银行卡类型',
-        dataIndex: 'bankCardTypeStr',
+        title: '编码',
+        dataIndex: 'code',
       },
       {
-        title: '维护类型',
-        dataIndex: 'fixTypeStr',
+        title: '成本',
+        dataIndex: 'cost',
       },
       {
-        title: '备注',
-        dataIndex: 'comment',
-      },
-      {
-        title: '是否短信推送',
-        dataIndex: 'msgSendStr',
-      },
-      {
-        title: '操作人',
-        dataIndex: 'operator',
-      },
-      {
-        title: '操作时间',
-        dataIndex: 'operateTime',
+        title: '库存',
+        dataIndex: 'count',
       },
       {
         title: '操作',

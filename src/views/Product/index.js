@@ -10,9 +10,9 @@ import SearchBar from './SearchBar';
 import Content from './Content';
 import RecordModal from './RecordModal';
 import PromptModal from './PromptModal';
-import './_bankChannel';
+import './_product';
 
-class BankChannel extends React.Component {
+class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,7 +66,7 @@ class BankChannel extends React.Component {
   // 请求列表
   getRecordsPromise(query) {
     return request
-    .get(url.bankService)
+    .get(url.product)
     .withCredentials()
     .query(query);
   }
@@ -377,4 +377,4 @@ class BankChannel extends React.Component {
   }
 }
 
-export default BankChannel;
+export default Product;

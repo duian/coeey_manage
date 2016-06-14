@@ -6,20 +6,18 @@ import './_sidebar';
 const SubMenu = Menu.SubMenu;
 const sideBarMenu = [
   {
-    key: 'solution',
-    icon: 'solution',
-    title: '配置',
+    key: 'product-manage',
+    icon: 'product-manage',
+    title: '产品管理',
     children: [
-      { key: 'bankChannel', title: '银行渠道维护', url: 'bankChannel' },
-      { key: 'fraudParam', title: '贷款需求开关', url: 'fraudParam' },
-      { key: 'systemParam', title: '贷款产品开关', url: 'systemParam' },
-      { key: 'validateSettings', title: '验证项配置', url: 'validateSettings' },
+      { key: 'product', title: '库存', url: 'product' },
+      { key: 'sales', title: '销售', url: 'sales' },
     ],
   },
   {
-    key: 'appstore',
-    icon: 'appstore',
-    title: '推送',
+    key: 'contact',
+    icon: 'contact',
+    title: '联系人管理',
     children: [
       // { key: '/a1', title: '银行渠道维护', url: '/a' },
     ],
@@ -46,8 +44,8 @@ class SlideBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 'bankChannel',
-      openKeys: ['solution'],
+      current: 'product',
+      openKeys: ['product-manage'],
     };
 
     this.handleClick = this.handleClick.bind(this);
