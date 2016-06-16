@@ -13,7 +13,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       sidebarStatus: true,
-      username: cookie.getItem('username') || '胖友',
+      username: cookie.getItem('username') || '姗姗',
     };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -39,7 +39,7 @@ class App extends React.Component {
     return (
       <div>
         <Header
-          name="人品贷运营管理后台"
+          name="姗姗专用后台"
           userName={username}
           className={sidebarActiveClass}
           onToggle={this.handleToggle}

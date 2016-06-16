@@ -19,7 +19,6 @@ const sideBarMenu = [
     icon: 'contact',
     title: '联系人管理',
     children: [
-      // { key: '/a1', title: '银行渠道维护', url: '/a' },
     ],
   },
   {
@@ -27,7 +26,6 @@ const sideBarMenu = [
     icon: 'eye',
     title: '其他',
     children: [
-      // { key: '/a2', title: '银行渠道维护', url: '/a' },
     ],
   },
   {
@@ -35,7 +33,6 @@ const sideBarMenu = [
     icon: 'setting',
     title: '系统设置',
     children: [
-      // { key: '/a3', title: '银行渠道维护', url: '/a' },
     ],
   },
 ];
@@ -97,7 +94,7 @@ class SlideBar extends Component {
         className={this.props.className}>
         <div
           id="sidedrawer-brand"
-          className="text-title">51人品贷后台</div>
+          className="text-title">姗姗专用后台</div>
         <div className="divider" />
 
         <Menu
