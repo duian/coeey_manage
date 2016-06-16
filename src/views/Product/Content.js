@@ -43,8 +43,8 @@ class Content extends React.Component {
 
     const { query, onPagination } = this.props;
     const { pageSize, current } = pagination;
-    query.pageSize = pageSize;
-    query.pageNo = current;
+    query.limit = pageSize;
+    query.page = current;
     onPagination(query)
     .then(() => this.setState({ loading: false }));
   }
@@ -59,8 +59,8 @@ class Content extends React.Component {
     } = this.props;
     const pagination = {
       total: query.total,
-      current: query.pageNo,
-      pageSize: query.pageSize,
+      current: query.page,
+      pageSize: query.limit,
       pageSizeOptions: ['50', '100', '150'],
       showSizeChanger: true,
     };
@@ -72,7 +72,7 @@ class Content extends React.Component {
       },
       {
         title: '系列',
-        dataIndex: 'class',
+        dataIndex: 'label',
       },
       {
         title: '名称',

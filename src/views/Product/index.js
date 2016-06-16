@@ -3,7 +3,7 @@ import { message } from 'antd';
 import request from 'superagent-bluebird-promise';
 import url from 'url';
 import { handleStatus, handleSuccess, getErrorMsg } from 'webApi';
-import params from 'params';
+// import params from 'params';
 import { mergeObj } from 'helper';
 import Container from 'Container';
 import SearchBar from './SearchBar';
@@ -17,12 +17,12 @@ class Product extends React.Component {
     super(props);
     this.state = {
       query: {
-        bankId: -1,
-        channelId: -1,
-        loanType: -1,
+        label: '',
+        name: '',
+        code: '',
         // 分页参数
-        pageNo: 1,
-        pageSize: 50,
+        page: 1,
+        limit: 50,
         total: 0,
       },
       records: [],
@@ -42,7 +42,7 @@ class Product extends React.Component {
     this.setRecords = this.setRecords.bind(this);
     this.setQuery = this.setQuery.bind(this);
     this.setPagination = this.setPagination.bind(this);
-    this.resetPageNo = this.resetPageNo.bind(this);
+    this.resetPage = this.resetPage.bind(this);
 
     // 新增/修改/验证重复/分页
     this.handleSearch = this.handleSearch.bind(this);
@@ -75,7 +75,7 @@ class Product extends React.Component {
   validatePromise(query) {
     return request
     // .get(`${url.bankService}/validator`)
-    .get(`${url.bankService}/validator`)
+    .get(`${url.product}/validator`)
     .withCredentials()
     .query(query);
   }
@@ -83,7 +83,7 @@ class Product extends React.Component {
   // 修改记录
   putRecordPromise(data) {
     return request
-    .put(url.bankService)
+    .put(url.product)
     .withCredentials()
     .send(data);
   }
@@ -91,38 +91,40 @@ class Product extends React.Component {
   // 新增记录
   postRecordPromise(data) {
     return request
-    .post(url.bankService)
+    .post(url.product)
     .withCredentials()
     .send(data);
   }
 
   // 删除记录
   deleteRecordPromise(data) {
+    const record = this.state.repeatRecords[0];
+    const { _id } = record;
     return request
-    .del(url.bankService)
+    .del(`${url.product}/${_id}`)
     .withCredentials()
     .send(data);
   }
 
   // 格式化数据, 将对应的字段转化为相应的文字
   formatRecords(res) {
-    const { records } = res;
-    if (records && records.length) {
-      records.map((record) => {
-        [
-          'bankId',
-          'loanType',
-          'channelId',
-          'bankCardType',
-          'fixType',
-          'msgSend',
-        ].map(type => {
-          record[`${type}Str`] = params.getName(type, record[type]);
-          return null;
-        });
-        return res;
-      });
-    }
+    // const { records } = res;
+    // if (records && records.length) {
+      // records.map((record) => {
+      //   [
+      //     'bankId',
+      //     'loanType',
+      //     'channelId',
+      //     'bankCardType',
+      //     'fixType',
+      //     'msgSend',
+      //   ].map(type => {
+      //     record[`${type}Str`] = params.getName(type, record[type]);
+      //     return null;
+      //   });
+        // return res;
+      // });
+    // }
     return res;
   }
 
@@ -153,8 +155,8 @@ class Product extends React.Component {
   }
 
   // 重置页码
-  resetPageNo(query) {
-    query.pageNo = 1;
+  resetPage(query) {
+    query.page = 1;
     return Promise.resolve(query);
   }
 
@@ -165,7 +167,7 @@ class Product extends React.Component {
     .then(this.formatRecords)
     .then(this.setRecords)
     .then((res) => this.setPagination(res, query))
-    .then(this.resetPageNo)
+    .then(this.resetPage)
     .then(this.setQuery)
     .catch((err) => message.error(getErrorMsg(err)));
   }

@@ -21,9 +21,32 @@ ProductSchema.pre('save', (next) => {
   next();
 });
 
+// ProductSchema.method = {
+//   destroy(id) {
+//
+//   }
+// };
+
 ProductSchema.statics = {
-  list() {
-    return this.find({});
+  load(_id) {
+    return this.findOne({ _id })
+    .exec();
+  },
+
+  list(options) {
+    const params = options.params || {};
+    const page = options.page || 0;
+    const limit = options.limit || 50;
+    return this.find(params)
+    .limit(limit)
+    .skip(limit * page)
+    .lean()
+    .exec((err, data) => (
+      data.map((record, index) => {
+        record.index = index + 1;
+        return record;
+      })
+    ));
   },
 };
 

@@ -1,9 +1,7 @@
 import React, { PropTypes } from 'react';
-import { Form, Select, Row, Col, Button } from 'antd';
-import params from 'params';
+import { Form, Input, Row, Col, Button } from 'antd';
 import { mergeObj } from 'helper';
 import Block from 'Block';
-import options from 'Options';
 const FormItem = Form.Item;
 
 class SearchBar extends React.Component {
@@ -20,7 +18,7 @@ class SearchBar extends React.Component {
     e.preventDefault();
     this.setState({ loading: true });
     const { form, query, onSearch } = this.props;
-    const initPaginationSettings = { pageNo: 1 };
+    const initPaginationSettings = { page: 1 };
     let fields = form.getFieldsValue();
     fields = mergeObj(initPaginationSettings, fields);
     const _query = mergeObj(query, fields);
@@ -46,50 +44,44 @@ class SearchBar extends React.Component {
           <Row>
             <Col span="5">
               <FormItem
-                label="编号"
+                label="系列"
                 labelCol={{ span: 10 }}
                 wrapperCol={{ span: 14 }}
               >
-                <Select
-                  {...getFieldProps('bankId', {
-                    initialValue: -1,
-                    id: 'bankId',
+                <Input
+                  {...getFieldProps('label', {
+                    initialValue: '',
                   })}
-                >
-                  {options(params.getItem('bankId'))}
-                </Select>
+                  placeholder="请输入系列名称"
+                />
               </FormItem>
             </Col>
             <Col span="5">
               <FormItem
-                label="所属渠道"
+                label="名称"
                 labelCol={{ span: 10 }}
                 wrapperCol={{ span: 14 }}
               >
-                <Select
-                  {...getFieldProps('channelId', {
-                    initialValue: -1,
-                    id: 'channelId',
+                <Input
+                  {...getFieldProps('name', {
+                    initialValue: '',
                   })}
-                >
-                  {options(params.getItem('channelId'))}
-                </Select>
+                  placeholder="请输入产品名称"
+                />
               </FormItem>
             </Col>
             <Col span="5">
               <FormItem
-                label="贷款类型"
+                label="编码"
                 labelCol={{ span: 10 }}
                 wrapperCol={{ span: 14 }}
               >
-                <Select
-                  {...getFieldProps('loanType', {
-                    initialValue: -1,
-                    id: 'loanType',
+                <Input
+                  {...getFieldProps('code', {
+                    initialValue: '',
                   })}
-                >
-                  {options(params.getItem('loanType'))}
-                </Select>
+                  placeholder="请输入编码"
+                />
               </FormItem>
             </Col>
             <Col span="7" offset="2">
