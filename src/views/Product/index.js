@@ -80,8 +80,9 @@ class Product extends React.Component {
 
   // 修改记录
   putRecordPromise(data) {
+    const { _id } = this.state.selectedRecord;
     return request
-    .put(url.product)
+    .put(`${url.product}/${_id}`)
     .withCredentials()
     .send(data);
   }

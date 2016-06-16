@@ -12,6 +12,23 @@ function removeEmptyProperty(obj) {
   return obj;
 }
 
+function handleBodyParam(body) {
+  const code = body.code ? body.code.trim() : '';
+  const cost = body.cost ? parseInt(body.cost, 10) : 0;
+  const count = body.count ? parseInt(body.count, 10) : 0;
+  const format = body.format ? body.format.trim() : '';
+  const label = body.label ? body.label.trim() : '';
+  const name = body.name ? body.name.trim() : '';
+  return {
+    code,
+    cost,
+    count,
+    format,
+    label,
+    name,
+  };
+}
+
 exports.load = (req, res, next, id) => {
   Product.load(id).then((data) => {
     try {
@@ -53,21 +70,20 @@ exports.index = (req, res) => {
 
 exports.create = (req, res) => {
   const body = req.body;
-  const code = body.code ? body.code.trim() : '';
-  const cost = body.cost ? parseInt(body.cost, 10) : 0;
-  const count = body.count ? parseInt(body.count, 10) : 0;
-  const format = body.format ? body.format.trim() : '';
-  const label = body.label ? body.label.trim() : '';
-  const name = body.name ? body.name.trim() : '';
-  const options = {
-    code,
-    cost,
-    count,
-    format,
-    label,
-    name,
-  };
+  const options = handleBodyParam(body);
   const product = new Product(options);
+  product.save((err, result) => {
+    if (err) {
+      res.send({ err });
+    }
+    res.send({ status: true, result });
+  });
+};
+
+exports.update = (req, res) => {
+  const body = req.body;
+  const options = handleBodyParam(body);
+  const product = Object.assign(req.product, options);
   product.save((err, result) => {
     if (err) {
       res.send({ err });

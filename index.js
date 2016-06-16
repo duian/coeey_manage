@@ -37,6 +37,8 @@ app.get('/api/product', products.index);
 
 app.post('/api/product', products.create);
 
+app.put('/api/product/:id', products.update);
+
 app.delete('/api/product/:id', products.destroy);
 
 app.listen(8089, (err) => {
