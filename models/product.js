@@ -17,7 +17,6 @@ ProductSchema.path('cost').required(true, 'Product cost cannot be blank');
 
 
 ProductSchema.pre('save', (next) => {
-  console.log('save err');
   next();
 });
 

@@ -6,9 +6,6 @@ const FormItem = Form.Item;
 class RecordModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      type: 'system',
-    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
@@ -17,7 +14,7 @@ class RecordModal extends React.Component {
 
   // 提交信息
   handleSubmit() {
-    const { form, onValidate } = this.props;
+    const { form, onSubmit } = this.props;
     form.validateFields((errors, values) => {
       if (!!errors) {
         console.log('Errors in form!!!');
@@ -25,7 +22,7 @@ class RecordModal extends React.Component {
       }
       // console.log(values);
       const data = this.handleParams(values);
-      onValidate(data);
+      onSubmit(data);
       // console.log(data);
     });
   }
@@ -45,12 +42,7 @@ class RecordModal extends React.Component {
     return newData;
   }
 
-  componentDidMount() {
-    const { record } = this.props;
-    if (record) {
-      this.setState({ type: (record.fixType === 1 ? 'system' : 'limitQuota') });
-    }
-  }
+  componentDidMount() {}
 
   render() {
     const { visible, form, record, status } = this.props;
@@ -122,9 +114,6 @@ class RecordModal extends React.Component {
       });
 
       codeProps = getFieldProps('code', {
-        rules: [
-          { required: true, message: '该项为必填项' },
-        ],
         initialValue: record ? record.code : undefined,
       });
 
@@ -232,7 +221,7 @@ class RecordModal extends React.Component {
 
 RecordModal.defaultProps = {
   visible: false,
-  title: '新增记录',
+  title: '新增产品',
   status: 'add',
   record: null,
   onClose: () => null,

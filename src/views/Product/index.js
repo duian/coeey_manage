@@ -33,7 +33,6 @@ class Product extends React.Component {
 
     // Ajax
     this.getRecordsPromise = this.getRecordsPromise.bind(this);
-    this.validatePromise = this.validatePromise.bind(this);
     this.putRecordPromise = this.putRecordPromise.bind(this);
     this.postRecordPromise = this.postRecordPromise.bind(this);
     this.deleteRecordPromise = this.deleteRecordPromise.bind(this);
@@ -47,7 +46,6 @@ class Product extends React.Component {
     // 新增/修改/验证重复/分页
     this.handleSearch = this.handleSearch.bind(this);
     this.handlePagination = this.handlePagination.bind(this);
-    this.handleValidate = this.handleValidate.bind(this);
     this.handleTransmit = this.handleTransmit.bind(this);
     this.handlePutRecord = this.handlePutRecord.bind(this);
     this.handlePostRecord = this.handlePostRecord.bind(this);
@@ -183,24 +181,9 @@ class Product extends React.Component {
     .catch((err) => message.error(getErrorMsg(err)));
   }
 
-  // 验证记录是否有相似
-  handleValidate(data) {
-    return this.validatePromise(data)
-    .then(handleStatus)
-    .then((res) => this.handleTransmit(res, data))
-    .catch((err) => message.error(getErrorMsg(err)));
-  }
-
-  // 验证过后根据返回状态进行提示/put/post
-  handleTransmit(res, data) {
+  // 根据状态进行提示/put/post
+  handleTransmit(data) {
     const { status } = this.state;
-    const { existed } = res;
-    if (existed) {
-      const { records } = this.formatRecords(res);
-      this.setState({ repeatRecords: records, newParam: data });
-      return this.openPromptModal();
-    }
-
     if (status === 'edit') {
       return this.handlePutRecord(data);
     }
@@ -222,9 +205,9 @@ class Product extends React.Component {
 
   handlePostRecord(data) {
     const { query } = this.state;
-    query.bankId = -1;
-    query.channelId = -1;
-    query.loanType = -1;
+    query.label = '';
+    query.name = '';
+    query.code = '';
     return this.postRecordPromise(data)
     .then(handleStatus)
     .then((res) => handleSuccess(res, '新增记录成功'))
@@ -269,7 +252,7 @@ class Product extends React.Component {
         status={status}
         record={selectedRecord}
         onClose={this.closeRecordModal}
-        onValidate={this.handleValidate}
+        onSubmit={this.handleTransmit}
       >
       </RecordModal>
     );

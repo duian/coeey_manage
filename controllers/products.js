@@ -52,12 +52,32 @@ exports.index = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  res.send({});
+  const body = req.body;
+  const code = body.code ? body.code.trim() : '';
+  const cost = body.cost ? parseInt(body.cost, 10) : 0;
+  const count = body.count ? parseInt(body.count, 10) : 0;
+  const format = body.format ? body.format.trim() : '';
+  const label = body.label ? body.label.trim() : '';
+  const name = body.name ? body.name.trim() : '';
+  const options = {
+    code,
+    cost,
+    count,
+    format,
+    label,
+    name,
+  };
+  const product = new Product(options);
+  product.save((err, result) => {
+    if (err) {
+      res.send({ err });
+    }
+    res.send({ status: true, result });
+  });
 };
 
 exports.destroy = (req, res) => {
   const product = req.product;
-  console.log('product', product);
   product.remove();
   res.send({ status: true });
 };

@@ -12,7 +12,7 @@ fs.readdirSync(models)
   .filter(file => ~file.search(/^[^\.].*\.js$/))
   .forEach(file => require(join(models, file)));
 
-const product = require('./controllers/products');
+const products = require('./controllers/products');
 db.on('error', console.error);
 db.once('open', () => {
   console.log('connect');
@@ -31,13 +31,13 @@ app.post('/api/user', (req, res) => {
   });
 });
 
-app.param('id', product.load);
+app.param('id', products.load);
 
-app.get('/api/product', product.index);
+app.get('/api/product', products.index);
 
-app.post('/api/product', product.create);
+app.post('/api/product', products.create);
 
-app.delete('/api/product/:id', product.destroy);
+app.delete('/api/product/:id', products.destroy);
 
 app.listen(8089, (err) => {
   if (err) {
